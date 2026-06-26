@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A containerized web server built with Docker and nginx." />
+  <title>Dockerized Web Server &middot; CodeAlpha DevOps</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav">
+      <span class="brand">⬡ CodeAlpha&nbsp;DevOps</span>
+      <a class="nav-link" href="#stack">Stack</a>
+      <a class="nav-link" href="#lifecycle">Lifecycle</a>
+      <a class="nav-link" href="#health">Health</a>
+    </nav>
+    <div class="hero-inner">
+      <p class="eyebrow">Task 4 &middot; Web Server using Docker</p>
+      <h1>A Web Server, Containerized.</h1>
+      <p class="lede">
+        A production-style static web server packaged into a single Docker image with
+        <strong>nginx</strong> — reproducible, portable, and health-monitored. Built as part of
+        the CodeAlpha DevOps Internship.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#lifecycle">Container lifecycle</a>
+        <a class="btn btn-ghost" href="#health">Health checks</a>
+      </div>
+      <div class="status-pill" id="status">
+        <span class="dot"></span> Served from an nginx container
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="stack" class="card-grid">
+      <article class="card">
+        <h3>🐳 Docker</h3>
+        <p>One <code>Dockerfile</code> builds an immutable image. Run it anywhere the engine runs — no "works on my machine".</p>
+      </article>
+      <article class="card">
+        <h3>⚡ nginx</h3>
+        <p>A lean, battle-tested web server on the official Alpine base image for a tiny footprint.</p>
+      </article>
+      <article class="card">
+        <h3>❤️ Healthcheck</h3>
+        <p>A built-in <code>HEALTHCHECK</code> lets the orchestrator know the container is actually serving traffic.</p>
+      </article>
+      <article class="card">
+        <h3>🧩 Compose</h3>
+        <p>A <code>docker-compose.yml</code> wires up ports, restart policy, and health into one command.</p>
+      </article>
+    </section>
+
+    <section id="lifecycle" class="panel">
+      <h2>Container Lifecycle</h2>
+      <p class="muted">The core commands that take this server from source to running container.</p>
+      <pre><code># Build the image
+docker build -t codealpha-webserver .
+
+# Run it (host 8080 -> container 80)
+docker run -d --name webserver -p 8080:80 codealpha-webserver
+
+# Or bring the whole stack up with Compose
+docker compose up -d
+
+# Inspect, watch, and stop
+docker ps
+docker logs webserver
+docker stop webserver && docker rm webserver</code></pre>
+    </section>
+
+    <section id="health" class="panel">
+      <h2>Health &amp; Monitoring</h2>
+      <p class="muted">The container reports its own health; the host watches resource usage live.</p>
+      <pre><code># See the HEALTHCHECK verdict (healthy / unhealthy)
+docker inspect --format '{{.State.Health.Status}}' webserver
+
+# Live CPU / memory / network usage
+docker stats webserver</code></pre>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Built by <strong>Ali</strong> &middot; CodeAlpha DevOps Internship 2026</p>
+    <p class="muted small">nginx &middot; Docker &middot; Static deployment</p>
+  </footer>
+</body>
+</html>

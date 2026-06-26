@@ -1,0 +1,13 @@
+# Keep the build context tiny and clean.
+.git
+.gitignore
+README.md
+docs/
+CLAUDE.md
+CONTEXT.md
+tasks/
+*.md
+!site/**
+.DS_Store
+Thumbs.db
+desktop.ini

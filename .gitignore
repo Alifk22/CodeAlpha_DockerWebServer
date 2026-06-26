@@ -1,0 +1,16 @@
+# Working / orchestration files — never publish
+CLAUDE.md
+CONTEXT.md
+tasks/
+*.lessons.md
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Local env
+*.log
+.env

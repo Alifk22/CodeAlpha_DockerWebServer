@@ -1,4 +1,4 @@
-# Web Server using Docker — CodeAlpha DevOps Task 4
+# Web Server using Docker - CodeAlpha DevOps Task 4
 # A minimal, reproducible nginx image serving a static site.
 
 # Pin to a small, stable base image.
